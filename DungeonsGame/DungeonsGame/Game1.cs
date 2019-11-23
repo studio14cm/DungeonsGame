@@ -151,18 +151,26 @@ namespace DungeonsGame
                     }
                 }
             }
-                
-
-           
 
             base.Update(gameTime);
         }
-
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
+            spriteBatch.Draw(Wall,
+                new Vector2(0, 0),
+               //(Window.ClientBounds.Width / 2),
+               //(Window.ClientBounds.Height / 4)),
+               null,
+               Color.White,
+               0,
+               Vector2.Zero,
+               1.067f,
+               SpriteEffects.None,
+               0);
+            spriteBatch.End();
             // отрисовка спрайта
             if (count == 1)
             {
@@ -174,19 +182,8 @@ namespace DungeonsGame
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
                     1.5f, SpriteEffects.None, 1);
-                spriteBatch.Draw(Wall,
-                 Vector2.Zero,
-                    //(Window.ClientBounds.Width / 2),
-                    //(Window.ClientBounds.Height / 4)),
-                null,
-                Color.White,
-                0,
-                Vector2.Zero,
-                1.1f,
-                SpriteEffects.None,
-                0);
-
                 spriteBatch.End();
+                count = 0;
             }
             else if (count == 2)
             {
@@ -198,19 +195,8 @@ namespace DungeonsGame
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
                     1.5f, SpriteEffects.None, 1);
-                spriteBatch.Draw(Wall,
-                Vector2.Zero,
-               //(Window.ClientBounds.Width / 2),
-               //(Window.ClientBounds.Height / 4)),
-               null,
-               Color.White,
-               0,
-               Vector2.Zero,
-               1.1f,
-               SpriteEffects.None,
-               0);
-
                 spriteBatch.End();
+                count = 0;
             }
             else if (count == 3)
             {
@@ -222,19 +208,8 @@ namespace DungeonsGame
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
                     1.5f, SpriteEffects.None, 1);
-                spriteBatch.Draw(Wall,
-                Vector2.Zero,
-               //(Window.ClientBounds.Width / 2),
-               //(Window.ClientBounds.Height / 4)),
-               null,
-               Color.White,
-               0,
-               Vector2.Zero,
-               1.1f,
-               SpriteEffects.None,
-               0);
-
                 spriteBatch.End();
+                count = 0;
             }
             else if (count == 4)
             {
@@ -246,22 +221,10 @@ namespace DungeonsGame
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
                     1.5f, SpriteEffects.None, 1);
-                spriteBatch.Draw(Wall,
-                Vector2.Zero,
-               //(Window.ClientBounds.Width / 2),
-               //(Window.ClientBounds.Height / 4)),
-               null,
-               Color.White,
-               0,
-               Vector2.Zero,
-               1.1f,
-               SpriteEffects.None,
-               0);
-
                 spriteBatch.End();
+                count = 0;
             }
-
-
+            
             base.Draw(gameTime);
         }
     }
