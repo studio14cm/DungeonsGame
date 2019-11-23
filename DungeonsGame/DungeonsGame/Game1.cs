@@ -15,8 +15,7 @@ namespace DungeonsGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            Console.WriteLine()
+            Content.RootDirectory = "Content"; 
         }
         
 
@@ -77,7 +76,6 @@ namespace DungeonsGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
