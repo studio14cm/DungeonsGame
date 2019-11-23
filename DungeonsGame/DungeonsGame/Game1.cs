@@ -8,6 +8,7 @@ namespace DungeonsGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D example;
 
         public Game1()
         {
@@ -23,6 +24,8 @@ namespace DungeonsGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            example = Content.Load<Texture2D>("megumin");
         }
 
       
@@ -46,6 +49,10 @@ namespace DungeonsGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            // отрисовка спрайта
+            spriteBatch.Begin();
+            spriteBatch.Draw(example, Vector2.Zero, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
