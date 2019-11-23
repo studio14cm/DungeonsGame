@@ -14,8 +14,8 @@ namespace DungeonsGame
         Texture2D PersonWalkRight;
         Vector2 position = Vector2.Zero;
         float speed = 2f;
-        int frameWidth = 32;
-        int frameHeight = 34;
+        int frameWidth = 160;
+        int frameHeight = 170;
         Point currentFrame = new Point(0, 0);
         Point spriteSize = new Point(3, 1);
         int currentTime = 0; // сколько времени прошло
@@ -23,10 +23,16 @@ namespace DungeonsGame
         int count = 0;
         
 
+
+
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1920;
+            this.IsMouseVisible = true;
+            
         }
         
 
@@ -165,7 +171,7 @@ namespace DungeonsGame
                         currentFrame.Y * frameHeight,
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
-                    5, SpriteEffects.None, 0);
+                    1, SpriteEffects.None, 0);
 
                 spriteBatch.End();
             }
@@ -178,7 +184,7 @@ namespace DungeonsGame
                         currentFrame.Y * frameHeight,
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
-                    5, SpriteEffects.None, 0);
+                    1, SpriteEffects.None, 0);
 
                 spriteBatch.End();
             }
@@ -191,7 +197,7 @@ namespace DungeonsGame
                         currentFrame.Y * frameHeight,
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
-                    5, SpriteEffects.None, 0);
+                    1, SpriteEffects.None, 0);
 
                 spriteBatch.End();
             }
@@ -204,7 +210,7 @@ namespace DungeonsGame
                         currentFrame.Y * frameHeight,
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
-                    5, SpriteEffects.None, 0);
+                    1, SpriteEffects.None, 0);
 
                 spriteBatch.End();
             }
