@@ -25,7 +25,7 @@ namespace DungeonsGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            example = Content.Load<Texture2D>("megumin");
+            example = Content.Load<Texture2D>("alisa");
         }
 
       
