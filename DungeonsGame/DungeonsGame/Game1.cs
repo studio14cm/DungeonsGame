@@ -12,6 +12,7 @@ namespace DungeonsGame
         Texture2D PersonWalkForward;
         Texture2D PersonWalkLeft;
         Texture2D PersonWalkRight;
+        Texture2D Wall;
         Vector2 position = Vector2.Zero;
         float speed = 2f;
         int frameWidth = 160;
@@ -48,6 +49,7 @@ namespace DungeonsGame
             PersonWalkForward = Content.Load<Texture2D>("walkForward");
             PersonWalkLeft = Content.Load<Texture2D>("walkLeft");
             PersonWalkRight = Content.Load<Texture2D>("walkRight");
+            Wall = Content.Load<Texture2D>("wall");
 
         }
 
@@ -171,7 +173,18 @@ namespace DungeonsGame
                         currentFrame.Y * frameHeight,
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
-                    1, SpriteEffects.None, 0);
+                    1.5f, SpriteEffects.None, 1);
+                spriteBatch.Draw(Wall,
+                 Vector2.Zero,
+                    //(Window.ClientBounds.Width / 2),
+                    //(Window.ClientBounds.Height / 4)),
+                null,
+                Color.White,
+                0,
+                Vector2.Zero,
+                1.1f,
+                SpriteEffects.None,
+                0);
 
                 spriteBatch.End();
             }
@@ -184,7 +197,18 @@ namespace DungeonsGame
                         currentFrame.Y * frameHeight,
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
-                    1, SpriteEffects.None, 0);
+                    1.5f, SpriteEffects.None, 1);
+                spriteBatch.Draw(Wall,
+                Vector2.Zero,
+               //(Window.ClientBounds.Width / 2),
+               //(Window.ClientBounds.Height / 4)),
+               null,
+               Color.White,
+               0,
+               Vector2.Zero,
+               1.1f,
+               SpriteEffects.None,
+               0);
 
                 spriteBatch.End();
             }
@@ -197,7 +221,18 @@ namespace DungeonsGame
                         currentFrame.Y * frameHeight,
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
-                    1, SpriteEffects.None, 0);
+                    1.5f, SpriteEffects.None, 1);
+                spriteBatch.Draw(Wall,
+                Vector2.Zero,
+               //(Window.ClientBounds.Width / 2),
+               //(Window.ClientBounds.Height / 4)),
+               null,
+               Color.White,
+               0,
+               Vector2.Zero,
+               1.1f,
+               SpriteEffects.None,
+               0);
 
                 spriteBatch.End();
             }
@@ -210,7 +245,18 @@ namespace DungeonsGame
                         currentFrame.Y * frameHeight,
                         frameWidth, frameHeight),
                     Color.White, 0, Vector2.Zero,
-                    1, SpriteEffects.None, 0);
+                    1.5f, SpriteEffects.None, 1);
+                spriteBatch.Draw(Wall,
+                Vector2.Zero,
+               //(Window.ClientBounds.Width / 2),
+               //(Window.ClientBounds.Height / 4)),
+               null,
+               Color.White,
+               0,
+               Vector2.Zero,
+               1.1f,
+               SpriteEffects.None,
+               0);
 
                 spriteBatch.End();
             }
