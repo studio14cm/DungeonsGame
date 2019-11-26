@@ -16,7 +16,7 @@ namespace DungeonsGame
 
         public Vector2 personPosition = Vector2.Zero;
 
-        public int frameWidth = 155;
+        public int frameWidth = 165;
         public int frameHeight = 170;
 
         int frameWidthStanding = 165;

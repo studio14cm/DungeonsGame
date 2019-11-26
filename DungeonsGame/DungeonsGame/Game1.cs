@@ -108,7 +108,7 @@ namespace DungeonsGame
                 PersonWalkRight = Content.Load<Texture2D>("walkRight"), 
                 Content.Load<Texture2D>("standing"), 
 
-                new Rectangle(30, cont.Height.X2/2, 155, 170));
+                new Rectangle(188,8111, 155, 170));
 
             player.Direction = Direction.Right;
 
