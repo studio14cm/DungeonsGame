@@ -19,7 +19,7 @@ namespace DungeonsGame
         public int frameWidth = 155;
         public int frameHeight = 170;
 
-        int frameWidthStanding = 162;
+        int frameWidthStanding = 165;
         int frameHeightStanding = 170;
 
         Point currentFrame = new Point(0, 0);
@@ -95,7 +95,7 @@ namespace DungeonsGame
             PersonWalkRight = Content.Load<Texture2D>("walkRight");
             PersonStanding = Content.Load<Texture2D>("standing");
 
-            PersonSize = new Point(PersonWalkRight.Width, PersonWalkRight.Height);
+           // PersonSize = new Point(PersonWalkRight.Width, PersonWalkRight.Height);
         }
 
         public void UpdateFrame(GameTime gameTime)
