@@ -139,10 +139,14 @@ namespace DungeonsGame
 
                 player.Moving(gameTime, 4);
 
-                if (player.personPosition.X < 0)
-                    player.personPosition.X = 0;
-                if (player.personPosition.Y < 0)
-                    player.personPosition.Y = 0;
+                if (player.personPosition.X < 97)
+                    player.personPosition.X = 97;
+                if (player.personPosition.Y < -10)
+                    player.personPosition.Y = -10;
+                if (player.personPosition.X >1600)
+                    player.personPosition.X = 1600;
+                if (player.personPosition.Y > 675)
+                    player.personPosition.Y = 675;
                 if (player.personPosition.X > graphics.PreferredBackBufferWidth)
                 {
 
