@@ -15,7 +15,7 @@ namespace DungeonsGame
         public Container(Line width, Line height)
         {
             Width = width;
-            Height = Height;
+            Height = height;
         }
     }
 }

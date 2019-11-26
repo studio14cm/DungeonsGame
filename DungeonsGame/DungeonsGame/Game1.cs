@@ -24,6 +24,9 @@ namespace DungeonsGame
         //int DeltaXFon1 = 0; //сдвиг изображения фона от 0 влево.
         // так, что бы оно оказалось в центре
         //int rock = 0;
+        Loot loot;
+
+        int coins;
 
         Color color = Color.CornflowerBlue;
 
@@ -33,13 +36,18 @@ namespace DungeonsGame
 
         Container cont;
 
+        SpriteFont MainFont;
+
         public Texture2D PersonWalkBack { get; set; }
         public Texture2D PersonWalkForward { get; set; }
         public Texture2D PersonWalkLeft { get; set; }
         public Texture2D PersonWalkRight { get; set; }
         public Texture2D PersonStanding { get; set; }
 
+        Texture2D Background;
+
         public Vector2 position = Vector2.Zero;
+
         public Point PersonSize { get; set; }
         
         Point currentFrame = new Point(0, 0);
@@ -47,6 +55,21 @@ namespace DungeonsGame
         Point spriteSizeStanding = new Point(7, 1);
 
         public int count = 0;
+
+        int Coins
+        {
+            get
+            {
+                return coins;
+            }
+            set
+            {
+                if (value < 0)
+                    coins = 0;
+                else
+                    coins += value;
+            }
+        }
 
         public Game1()
         {
@@ -56,12 +79,10 @@ namespace DungeonsGame
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
-            cont = new Container(new Line(10, graphics.PreferredBackBufferWidth), new Line(10, graphics.PreferredBackBufferHeight));
+            cont = new Container(new Line(10, graphics.PreferredBackBufferWidth-10), new Line(10, graphics.PreferredBackBufferHeight-10));
 
            // graphics.IsFullScreen = true;
             this.IsMouseVisible = true;
-            
-
         }
         
 
@@ -74,18 +95,30 @@ namespace DungeonsGame
             Content.RootDirectory = "Content";
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Wall = Content.Load<Texture2D>("wall");
+           
             Rock = Content.Load<Texture2D>("Rock");
+            Background = Content.Load<Texture2D>("background");
 
-            player = new Player (PersonWalkBack = Content.Load<Texture2D>("walkBack"), PersonWalkForward = Content.Load<Texture2D>("walkForward"), PersonWalkLeft = Content.Load<Texture2D>("walkLeft"), PersonWalkRight = Content.Load<Texture2D>("walkRight"), Content.Load<Texture2D>("standing"), new Rectangle(600, 600, 30, 30));
+            loot= new Loot(Content.Load<Texture2D>("Rock"), new Rectangle(0,0, 60, 60),Position.ComputePosition(cont));
+
+            player = new Player (
+                PersonWalkBack = Content.Load<Texture2D>("walkBack"), 
+                PersonWalkForward = Content.Load<Texture2D>("walkForward"), 
+                PersonWalkLeft = Content.Load<Texture2D>("walkLeft"), 
+                PersonWalkRight = Content.Load<Texture2D>("walkRight"), 
+                Content.Load<Texture2D>("standing"), 
+
+                new Rectangle(30, cont.Height.X2/2, 155, 170));
 
             player.Direction = Direction.Right;
+
+            MainFont = Content.Load<SpriteFont>("Main");
         }
 
       
         protected override void UnloadContent()
         {
-            
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -97,6 +130,12 @@ namespace DungeonsGame
 
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keyboardState.IsKeyDown(Keys.Escape))
                     Exit();
+                if (loot.WasTaken)
+                {
+                    loot.SetPosition(Position.ComputePosition(cont));
+
+                    loot.WasTaken = false;
+                }
 
                 player.Moving(gameTime, 4);
 
@@ -105,10 +144,23 @@ namespace DungeonsGame
                 if (player.personPosition.Y < 0)
                     player.personPosition.Y = 0;
                 if (player.personPosition.X > graphics.PreferredBackBufferWidth)
-                    player.personPosition.X = cont.Width.X2;
+                {
+
+                }
+               
                 if (player.personPosition.Y > Window.ClientBounds.Height)
-                    player.personPosition.Y = cont.Height.X2;
+                {
+
+                }
+                    
                 base.Update(gameTime);
+
+                if (player.Rectangle.Intersects(loot.Rectangle))
+                {
+                    loot.WasTaken = true;
+                    Coins++;
+                }
+                
             }
                 
         }
@@ -118,68 +170,56 @@ namespace DungeonsGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-            spriteBatch.Draw(Wall,
+
+            spriteBatch.Draw(Background,
                 new Vector2(0, 0),
                null,
                Color.White,
                0,
                Vector2.Zero,
-               1.067f,
+               1f,
                SpriteEffects.None,
                0);
-
-            spriteBatch.End();
             if (player.count == 1)
             {
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-
                 player.DrawLeft(gameTime, spriteBatch);
-
-                spriteBatch.End();
+                player.DrawLeftRectangle(gameTime, spriteBatch);
 
                 count = 0;
             }
             else if (player.count == 2)
             {
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-
                 player.DrawRight(gameTime, spriteBatch);
-
-                spriteBatch.End();
+                player.DrawRightRectangle(gameTime, spriteBatch);
 
                 count = 0;
             }
             else if (player.count == 3)
             {
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-
                 player.DrawUp(gameTime,spriteBatch);
-
-                spriteBatch.End();
+                player.DrawUpRectangle(gameTime, spriteBatch);
 
                 count = 0;
             }
             else if (player.count == 4)
             {
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-
                 player.DrawDown(gameTime, spriteBatch);
-
-                spriteBatch.End();
+                player.DrawDownRectangle(gameTime, spriteBatch);
 
                 count = 0;
             }
             else if (player.count == 5)
             {
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-
                 player.DrawStanding(gameTime, spriteBatch);
-
-                spriteBatch.End();
-
+                player.DrawStandingRectangle(gameTime, spriteBatch);
                 count = 0;
             }
-            // отрисовка спрайта
+
+            spriteBatch.Draw(loot.Texture, loot.Rectangle, Color.White);
+            spriteBatch.DrawString(MainFont, $"Score : {Coins}", new Vector2(10, 7), Color.White);
+
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

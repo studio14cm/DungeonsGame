@@ -16,8 +16,8 @@ namespace DungeonsGame
 
         public Vector2 personPosition = Vector2.Zero;
 
-        int frameWidth = 155;
-        int frameHeight = 170;
+        public int frameWidth = 155;
+        public int frameHeight = 170;
 
         int frameWidthStanding = 162;
         int frameHeightStanding = 170;
@@ -72,7 +72,7 @@ namespace DungeonsGame
 
         SpriteBatch spriteBatch;
 
-        public Player(Texture2D texture, Texture2D texture1, Texture2D texture2, Texture2D texture3, Texture2D texture4 ,Rectangle rectangle)
+        public Player(Texture2D texture, Texture2D texture1, Texture2D texture2, Texture2D texture3, Texture2D texture4, Rectangle rectangle)
         {
             PersonWalkBack = texture;
             PersonWalkForward = texture1;
@@ -173,6 +173,10 @@ namespace DungeonsGame
                 UpdateFrameStanding(gameTime);
                 count = 5;
             }
+            if ((keyboardState.IsKeyDown(Keys.W) && (keyboardState.IsKeyDown(Keys.W))))
+            {
+
+            }
 
         }
 
@@ -180,31 +184,51 @@ namespace DungeonsGame
         {
             spriteBatch.Draw(PersonStanding, personPosition , new Rectangle(currentFrame.X * frameWidthStanding,
                     currentFrame.Y * frameHeightStanding,
-                    frameWidthStanding, frameHeightStanding), Color.White ,0 ,Vector2.Zero, 1.3f, SpriteEffects.None, 0);
+                    frameWidthStanding, frameHeightStanding), Color.White ,0 ,Vector2.Zero, 1.3f, SpriteEffects.None, 1);
         }
         public void DrawRight(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(PersonWalkRight, personPosition, new Rectangle(currentFrame.X * frameWidth,
                     currentFrame.Y * frameHeight,
-                    frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 0);
+                    frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 1);
         }
         public void DrawLeft(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(PersonWalkLeft, personPosition, new Rectangle(currentFrame.X * frameWidth,
                     currentFrame.Y * frameHeight,
-                    frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 0);
+                    frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 1);
         }
         public void DrawUp(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(PersonWalkForward, personPosition, new Rectangle(currentFrame.X * frameWidth,
                     currentFrame.Y * frameHeight,
-                    frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 0);
+                    frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 1);
         }
         public void DrawDown(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(PersonWalkBack, personPosition, new Rectangle(currentFrame.X * frameWidth,
                     currentFrame.Y * frameHeight,
-                    frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 0);
+                    frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 1);
+        }
+        public void DrawStandingRectangle(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(PersonWalkBack, personPosition, rectangle, Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 1);
+        }
+        public void DrawRightRectangle(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(PersonWalkBack, personPosition, rectangle, Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None,1);
+        }
+        public void DrawLeftRectangle(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(PersonWalkBack, personPosition, rectangle, Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 1);
+        }
+        public void DrawUpRectangle(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(PersonWalkBack, personPosition, rectangle, Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 1);
+        }
+        public void DrawDownRectangle(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(PersonWalkBack, personPosition, rectangle, Color.White, 0, Vector2.Zero, 1.3f, SpriteEffects.None, 1);
         }
     }
 }
